@@ -8,15 +8,25 @@ function App() {
   const articles = [
     {title:"Tutorial html", id: 1},
     {title:"Le basi di CSS" , id:2} ,
-    {title:"Differenza tra JAVA e JAVASCRIPT" , id:3 } ,
+    {title:"Differenza tra JAVA e JAVASCRIPT" , id:3} ,
     {title:"il protocollo https" , id:4}
    ]
 
   const [newArticle, setnewArticle] = useState('')
 
-  function handleSubmit(e){
-    e.preventDefault()
-    console.log(newArticle)
+  function handleSubmit(e) {
+    e.preventDefault();
+  
+
+    const nextId = articles.length + 1;
+    const newEntry = {
+      id: nextId,
+      title: newArticle
+    };
+    setnewArticle([...articles, newEntry]);
+    
+   
+    setnewArticle('');
   }
 
   return (
