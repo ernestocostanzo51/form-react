@@ -5,13 +5,13 @@ import { useState } from "react"
 
 function App() {
 
-  const articles = [
-    {title:"Tutorial html", id: 1},
-    {title:"Le basi di CSS" , id:2} ,
-    {title:"Differenza tra JAVA e JAVASCRIPT" , id:3} ,
-    {title:"il protocollo https" , id:4}
-   ]
-
+  const [articles, setArticles] = useState([
+    { title: "Tutorial html", id: 1 },
+    { title: "Le basi di CSS", id: 2 },
+    { title: "Differenza tra JAVA e JAVASCRIPT", id: 3 },
+    { title: "il protocollo https", id: 4 }
+  ]);
+  
   const [newArticle, setnewArticle] = useState('')
 
   function handleSubmit(e) {
@@ -19,13 +19,12 @@ function App() {
   
 
     const nextId = articles.length + 1;
+
     const newEntry = {
       id: nextId,
       title: newArticle
     };
-    setnewArticle([...articles, newEntry]);
-    
-   
+      setArticles([...articles, newEntry]);
     setnewArticle('');
   }
 
@@ -37,7 +36,7 @@ function App() {
           <h4>Inserisci un nuovo titolo</h4>
           <form onSubmit={handleSubmit}>
             <input type="text" value={newArticle}onChange={e => setnewArticle(e.target.value)}></input>
-            <button type="submit" className="btn-primary" >Inserisci</button>
+            <button type="submit" className="btn-primary"  >Inserisci</button>
           </form>
         </div>
       </div>
