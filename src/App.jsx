@@ -4,8 +4,20 @@ import { useState } from "react"
 
 
 function App() {
-  const articles = ["Tutorial html", "Le basi di CSS", "Differenza tra JAVA e JAVASCRIPT", "il protocollo https"]
-  
+
+  const articles = [
+    {title:"Tutorial html", id: 1},
+    {title:"Le basi di CSS" , id:2} ,
+    {title:"Differenza tra JAVA e JAVASCRIPT" , id:3 } ,
+    {title:"il protocollo https" , id:4}
+   ]
+
+  const [newArticle, setnewArticle] = useState('')
+
+  function handleSubmit(e){
+    e.preventDefault()
+    console.log(newArticle)
+  }
 
   return (
     <>
@@ -13,9 +25,9 @@ function App() {
       <div className="row text-center">
         <div className="col m-4">
           <h4>Inserisci un nuovo titolo</h4>
-          <form>
-            <input type="text"></input>
-            <button type="submit" className="btn-primary">Inserisci</button>
+          <form onSubmit={handleSubmit}>
+            <input type="text" value={newArticle}onChange={e => setnewArticle(e.target.value)}></input>
+            <button type="submit" className="btn-primary" >Inserisci</button>
           </form>
         </div>
       </div>
@@ -27,8 +39,8 @@ function App() {
       <div className="row d-flex flex-column text-center">
         {
          articles.map(article =>(
-          <div className="col m-2 text-center">
-            {article}
+          <div className="col m-2 text-center" key={article.id}>
+            {article.title}
           </div>
          ))
         }
